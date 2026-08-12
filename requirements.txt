@@ -1,0 +1,8 @@
+torch
+torchvision
+diffusers
+datasets
+transformers
+accelerate
+matplotlib
+Pillow
