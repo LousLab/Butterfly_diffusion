@@ -92,8 +92,8 @@ The following inference step counts were compared:
 
 * 50
 * 100
-* 250
-* 500
+* 400
+* 800
 * 1000
 
 Higher inference step counts generally produced more refined results but required more computation.
