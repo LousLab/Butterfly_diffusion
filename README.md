@@ -1,6 +1,6 @@
 # Butterfly Diffusion
 
-An unconditional image generation project using a Denoising Diffusion Probabilistic Model (DDPM) trained on the Smithsonian Butterflies dataset.
+An image generation project using a Denoising Diffusion Probabilistic Model (DDPM) trained on the Smithsonian Butterflies dataset.
 
 The project uses **PyTorch** and the **Hugging Face Diffusers** library to train a U-Net model to progressively denoise random Gaussian noise into new butterfly images.
 
@@ -17,7 +17,7 @@ Add Gaussian Noise
       ↓
 Noisy Image
       ↓
-U-Net learns to predict the noise
+U-Net predicts the noise
       ↓
 Train the model
       ↓
@@ -27,8 +27,6 @@ Iteratively remove noise
       ↓
 Generated Butterfly
 ```
-
-The current version is **unconditional**, meaning the user does not specify a class, color, or text prompt when generating an image.
 
 ## Technologies
 
@@ -54,7 +52,7 @@ More information about the dataset is provided in [`dataset.txt`](dataset.txt).
 The project uses:
 
 * **U-Net (`UNet2DModel`)** for noise prediction
-* **DDPMScheduler** for the forward and reverse diffusion process
+* **DDPMScheduler** for the diffusion process
 * **AdamW** optimizer
 * **Mean Squared Error (MSE)** loss
 
@@ -66,7 +64,7 @@ The diffusion process uses **1000 training timesteps**.
 
 The model is trained by:
 
-1. Selecting a clean butterfly image.
+1. Selecting a butterfly image.
 2. Generating random Gaussian noise.
 3. Selecting a random diffusion timestep.
 4. Adding noise according to that timestep.
@@ -75,22 +73,22 @@ The model is trained by:
 7. Comparing predicted noise with the actual noise using MSE.
 8. Updating the model weights.
 
-Both training and validation MSE are recorded during training.
+Training and validation MSE are recorded during training.
 
 ## Evaluation
 
-The current baseline uses:
+The model is evaluated using:
 
 * Training MSE
 * Validation MSE
 * Training/validation loss curves
 * Qualitative inspection of generated images
 
-Inference speed and image quality are also compared using different numbers of reverse-diffusion steps.
+Different numbers of inference steps were also tested to study the trade-off between generation speed and image quality.
 
 ### Inference Step Experiment
 
-Different numbers of inference steps were tested:
+The following inference step counts were compared:
 
 * 50
 * 100
@@ -98,46 +96,7 @@ Different numbers of inference steps were tested:
 * 500
 * 1000
 
-The purpose was to observe the trade-off between generation speed and image quality.
-
-## Project Structure
-
-```text
-butterfly-diffusion/
-│
-├── train.py
-├── generate.py
-├── requirements.txt
-├── dataset.txt
-├── README.md
-├── .gitignore
-│
-├── models/
-│   └── butterfly_ddpm/
-│
-└── results/
-    └── samples/
-```
-
-### `train.py`
-
-Trains the unconditional DDPM and saves the trained model and scheduler.
-
-### `generate.py`
-
-Loads the saved model and generates new butterfly images without retraining.
-
-### `dataset.txt`
-
-Contains information about the dataset, its source, and preprocessing.
-
-### `requirements.txt`
-
-Contains the Python dependencies required to run the project.
-
-### `results/`
-
-Contains generated samples and experiment results.
+Higher inference step counts generally produced more refined results but required more computation.
 
 ## Installation
 
@@ -166,7 +125,7 @@ Install the dependencies:
 pip install -r requirements.txt
 ```
 
-For NVIDIA GPU training, install the appropriate CUDA-enabled PyTorch build according to your system.
+For NVIDIA GPU training, install the appropriate CUDA-enabled PyTorch build for your system.
 
 ## Training
 
@@ -176,13 +135,13 @@ Run:
 python train.py
 ```
 
-The trained model will be saved under:
+The trained model is saved under:
 
 ```text
 models/butterfly_ddpm/
 ```
 
-The training loss curve will also be generated.
+The training and validation loss curve is also generated.
 
 ## Image Generation
 
@@ -200,29 +159,27 @@ Generated images are saved in:
 results/samples/
 ```
 
-## Current Results
+## Results
 
-The current baseline demonstrates that the trained DDPM can generate recognizable butterfly-like images from random noise.
+The current model is able to generate recognizable butterfly-like images from random noise.
 
 The generated images still have limitations such as:
 
-* low resolution
-* blurry details
-* imperfect wing structure
-* occasional color/background artifacts
+* Low resolution
+* Blurry details
+* Imperfect wing structures
+* Occasional color and background artifacts
 
-These results serve as the baseline for further experimentation.
+These results provide the baseline for further development.
 
 ## Future Work
 
-Planned improvements include:
-
-* Experimenting with different noise schedules
-* Improving the U-Net architecture
-* Increasing image resolution
-* Quantitative image-generation evaluation such as FID
-* Conditional diffusion
-* Color-controlled butterfly generation
+* Experiment with different noise schedules
+* Improve the U-Net architecture
+* Increase image resolution
+* Add quantitative evaluation such as FID
+* Implement conditional diffusion
+* Add color-controlled butterfly generation
 
 ## Author
 
