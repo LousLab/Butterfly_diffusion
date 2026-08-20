@@ -1,6 +1,8 @@
-Butterfly Diffusion
-An image generation project exploring Denoising Diffusion Probabilistic Models (DDPMs) trained on the Smithsonian Butterflies dataset.
-The project progresses from a basic unconditional DDPM to a conditional DDPM capable of generating butterflies based on color conditions. The latest version uses Classifier-Free Guidance (CFG) to improve color conditioning.
+Butterfly Diffusion is an image generation project using Denoising Diffusion Probabilistic Models (DDPMs) trained on the Smithsonian Butterflies dataset.
+
+It progresses from unconditional butterfly generation to color-conditioned generation.
+
+The latest model uses Classifier-Free Guidance (CFG) to improve color control.
 ---
 Project Overview
 Diffusion models learn image generation by learning to reverse a gradual noise-addition process.
