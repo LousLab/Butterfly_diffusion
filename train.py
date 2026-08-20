@@ -14,7 +14,7 @@ import os
 
 IMAGE_SIZE = 64
 BATCH_SIZE = 16
-EPOCHS = 20
+EPOCHS = 30
 LEARNING_RATE = 1e-4
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"

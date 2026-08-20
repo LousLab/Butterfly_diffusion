@@ -55,7 +55,7 @@ def generate_butterflies(num_images=1):
     )
 
     # Use the scheduler's inference timesteps
-    noise_scheduler.set_timesteps(800)
+    noise_scheduler.set_timesteps(1000)
 
     # Gradually remove noise
     for timestep in noise_scheduler.timesteps:
